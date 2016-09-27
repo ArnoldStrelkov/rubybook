@@ -102,7 +102,7 @@
                     <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pse">&lt;%=</span><span class="pl-s1"> form_authenticity_token </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">"</span></span>&gt;
                     &lt;<span class="pl-ent">label</span>&gt;Видео&lt;/<span class="pl-ent">label</span>&gt; 
                     &lt;<span class="pl-ent">input</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>video<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=
-                    <span class="pl-s"><span class="pl-pds">"</span>например: https://www.youtube.com/ watch?v=maX7jD6vGio<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span>&gt;
+                    <span class="pl-s"><span class="pl-pds">"</span>например: https://www.youtube.com/watch?v=maX7jD6vGio<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span>&gt;
                 &lt;/<span class="pl-ent">div</span>&gt;
                 &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_post_button<span class="pl-pds">"</span></span>&gt;
                     Отправить
@@ -147,7 +147,7 @@
                 &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>joined<span class="pl-pds">"</span></span>&gt;
                     <span class="pl-pse">&lt;%</span><span class="pl-s1"> count <span class="pl-k">=</span> <span class="pl-c1">FollowIdea</span>.where(<span class="pl-c1">idea_id:</span> idea).count </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
                     <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">unless</span> count <span class="pl-k">==</span> <span class="pl-c1">0</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
-                        &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_joined<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>/sususers/%3C%=%20idea.id%20%%3E<span class="pl-pds">"</span></span>&gt;присоеденилось:
+                        &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_joined<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;присоеденилось:
                     <span class="pl-pse">&lt;%=</span><span class="pl-s1"> count </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">a</span>&gt; 
                     <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
                 &lt;/<span class="pl-ent">div</span>&gt;
@@ -172,6 +172,65 @@
         <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
     &lt;/<span class="pl-ent">div</span>&gt;
 &lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p>Давайте разберем этот код по кусочкам. Вот это цикл <code>for in</code> с помощью котрого мы перебираем все идеи которые находятся в переменной <code>@ideas</code></p>
+
+<div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>idea<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>wrapper<span class="pl-pds">"</span></span>&gt;
+        <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">for</span> idea <span class="pl-k">in</span> <span class="pl-smi">@ideas</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>one_idea<span class="pl-pds">"</span></span>&gt;
+
+            ...
+
+        &lt;/<span class="pl-ent">div</span>&gt;
+        <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p>выводим заголовок идеи</p>
+
+<div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">h2</span>&gt;<span class="pl-pse">&lt;%=</span><span class="pl-s1"> idea.header</span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">h2</span>&gt;</pre></div>
+
+<p>Если к идеи было прикреплено видео, то выводим это видео</p>
+
+<div class="highlight highlight-text-html-erb"><pre><span class="pl-pse">&lt;%</span><span class="pl-s1"><span class="pl-k">if</span> <span class="pl-k">!</span>idea.video.to_s.empty? </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+     &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>youtube<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pse">&lt;%=</span><span class="pl-s1"> idea.video.split(<span class="pl-s"><span class="pl-pds">'</span>?v=<span class="pl-pds">'</span></span>)[<span class="pl-c1">1</span>] </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">"</span></span>&gt;
+         <span class="pl-pse">&lt;%=</span><span class="pl-s1"> image_tag <span class="pl-s"><span class="pl-pds">"</span>yt.png<span class="pl-pds">"</span></span>, <span class="pl-c1">class:</span> <span class="pl-s"><span class="pl-pds">"</span>yt<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+     &lt;/<span class="pl-ent">div</span>&gt;
+<span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
+
+<p>Вообще здесь мы прописываем в id дива адрес видео с ютуба. А затем при клике на данный див считываем этот id и используем его для формирования iframe, который затем ставим на место данного дива с помошью вот такого кода JS</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-en">youtube</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
+
+    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>.youtube<span class="pl-pds">"</span></span>).<span class="pl-en">each</span>(<span class="pl-k">function</span>() {
+
+        <span class="pl-c">// определение миниатюры</span>
+        <span class="pl-en">$</span>(<span class="pl-v">this</span>).<span class="pl-en">css</span>(<span class="pl-s"><span class="pl-pds">'</span>background-image<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>url(http://i.ytimg.com/vi/<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">id</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>/sddefault.jpg)<span class="pl-pds">'</span></span>);
+
+        <span class="pl-en">$</span>(<span class="pl-c1">document</span>).<span class="pl-en">delegate</span>(<span class="pl-s"><span class="pl-pds">'</span>#<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">id</span>, <span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>() {
+            <span class="pl-c">// iframe со включенной опцией autoplay</span>
+            <span class="pl-k">var</span> iframe_url <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>https://www.youtube.com/embed/<span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">id</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>?autoplay=1&amp;autohide=1&amp;rel=0<span class="pl-pds">"</span></span>;
+            <span class="pl-c">// if ($(this).data('params')) iframe_url+='&amp;'+$(this).data('params');</span>
+
+            <span class="pl-c">// Высота и ширина iframe</span>
+            <span class="pl-k">var</span> iframe <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;iframe/&gt;<span class="pl-pds">'</span></span>, {
+                <span class="pl-s"><span class="pl-pds">'</span>frameborder<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>,
+                <span class="pl-s"><span class="pl-pds">'</span>src<span class="pl-pds">'</span></span><span class="pl-k">:</span> iframe_url
+            });
+
+            <span class="pl-c">// Замена миниатюры плеером</span>
+            <span class="pl-en">$</span>(<span class="pl-v">this</span>).<span class="pl-c1">replaceWith</span>(iframe);
+        });
+    });
+
+}; 
+
+<span class="pl-en">youtube</span>();</pre></div>
+
+<p>это просто выводит иконку</p>
+
+<div class="highlight highlight-text-html-erb"><pre>    <span class="pl-pse">&lt;%=</span><span class="pl-s1"> image_tag <span class="pl-s"><span class="pl-pds">"</span>yt.png<span class="pl-pds">"</span></span>, <span class="pl-c1">class:</span> <span class="pl-s"><span class="pl-pds">"</span>yt<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span></pre></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ArnoldStrelkov/rubybook">Rubybook</a> is maintained by <a href="https://github.com/ArnoldStrelkov">ArnoldStrelkov</a>.</span>
