@@ -63,35 +63,87 @@
 <p>Данный метод просто запрашивает все записи из модели <code>Idea</code> в переменную <code>@ideas</code>. Затем управление передается во выюху <code>index.html.erb</code></p>
 
 <h3>
-<a id="Заводим-модель-user" class="anchor" href="#%D0%97%D0%B0%D0%B2%D0%BE%D0%B4%D0%B8%D0%BC-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C-user" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Заводим модель <code>User</code>
-</h3>
+<a id="Вьюха-indexhtmlerb" class="anchor" href="#%D0%92%D1%8C%D1%8E%D1%85%D0%B0-indexhtmlerb" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Вьюха index.html.erb</h3>
 
-<p>Модель юзера заводим с помошью такой миграции</p>
+<p>Первый блок вьюхи это отображение меню</p>
 
-<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">CreateUsers<span class="pl-e"> &lt; ActiveRecord::Migration</span></span>
-  <span class="pl-k">def</span> <span class="pl-en">change</span>
-    create_table <span class="pl-c1">:users</span> <span class="pl-k">do </span>|<span class="pl-smi">t</span>|
-      t.string <span class="pl-c1">:name</span>
-      t.string <span class="pl-c1">:avatar</span>
-      t.string <span class="pl-c1">:provider</span>
-      t.string <span class="pl-c1">:uid</span>
-      t.string <span class="pl-c1">:token</span>
-    <span class="pl-k">end</span>
-  <span class="pl-k">end</span>
-<span class="pl-k">end</span></pre></div>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>menu<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+    <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>wrapper<span class="pl-pds">"</span></span>  <span class="pl-k">&gt;</span>
+      <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>cf<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>menu_text<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>Поиск единомышленников <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>menu_button<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">if</span> <span class="pl-smi">@current_user</span><span class="pl-s"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s">                &lt;%= @current_user.name %<span class="pl-pds">&gt;</span></span>
+                 <span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">else</span> <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s">                &lt;a  class="a_button" href='/auth/vkontakte'<span class="pl-pds">&gt;</span></span>Войти через вк<span class="pl-k">&lt;</span><span class="pl-k">/</span>a&gt;<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">end</span> <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
+<span class="pl-s">         &lt;/div<span class="pl-pds">&gt;</span></span>  
+    <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>   </pre></div>
 
-<p>В поля <code>provider</code> и <code>uid</code> мы будем записывать информацию полученную от социальной сети при авторизации.
-Ну и затем подрубаем авторизацию. Для этого прописываем в файле Gemfile два гема </p>
+<p>Здесь мы проверяем наличие <code>@current_user</code> и если он есть то выводим его имя, а если нет, то выводим кнопку входа через вконтакте.</p>
 
-<div class="highlight highlight-source-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>omniauth<span class="pl-pds">'</span></span>
-<span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>omniauth-vkontakte<span class="pl-pds">'</span></span></pre></div>
+<p>Затем идет блок с кнопкой добавить идею. Данна конпка отображается только если юзер залогинился.
+При нажатии на эту кнопку с помоштю JQuery отображается форма идеи а сама кнопка скрывается</p>
 
-<p>прогоняем команду bundle install
-в папке config\initializers создаем файл omniauth.rb и прописываем в него следующие строчки</p>
+<div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea <span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>wrapper<span class="pl-pds">"</span></span>  &gt; 
 
-<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">Rails</span>.application.config.middleware.use <span class="pl-c1">OmniAuth</span>::<span class="pl-c1">Builder</span> <span class="pl-k">do</span>
-    provider <span class="pl-c1">:vkontakte</span>, <span class="pl-c1">ENV</span>[<span class="pl-s"><span class="pl-pds">'</span>VK_KEY<span class="pl-pds">'</span></span>], <span class="pl-c1">ENV</span>[<span class="pl-s"><span class="pl-pds">'</span>VK_SECRET<span class="pl-pds">'</span></span>]
-  <span class="pl-k">end</span></pre></div>
+      <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">if</span> <span class="pl-smi">@current_user</span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+      &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea_button<span class="pl-pds">"</span></span>&gt;добавить идею&lt;/<span class="pl-ent">div</span>&gt;
+      <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+      &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea_form<span class="pl-pds">"</span></span>&gt;
+          &lt;<span class="pl-ent">form</span> <span class="pl-e">method</span>=<span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>/api/new_idea<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>ajax_form idea-form<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>idea-form<span class="pl-pds">"</span></span> &gt;
+              &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form_wrapper<span class="pl-pds">"</span></span>&gt;
+
+                &lt;<span class="pl-ent">label</span> &gt;Заголовок&lt;/<span class="pl-ent">label</span>&gt; 
+                &lt;<span class="pl-ent">input</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>header<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;
+
+                &lt;<span class="pl-ent">label</span> &gt;Текст&lt;/<span class="pl-ent">label</span>&gt;
+                &lt;<span class="pl-ent">textarea</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text <span class="pl-pds">"</span></span> <span class="pl-e">rows</span>=<span class="pl-s"><span class="pl-pds">"</span>10<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">textarea</span>&gt;
+
+               &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>authenticity_token<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pse">&lt;%=</span><span class="pl-s1"> form_authenticity_token </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">"</span></span>&gt;
+               &lt;<span class="pl-ent">label</span> &gt;Видео&lt;/<span class="pl-ent">label</span>&gt; 
+                &lt;<span class="pl-ent">input</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>video<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span> 
+                <span class="pl-e">placeholder</span>=<span class="pl-s"><span class="pl-pds">"</span>например: https://www.youtube.com/watch?v=maX7jD6vGio<span class="pl-pds">"</span></span>&gt;
+                &lt;<span class="pl-ent">br</span>&gt;
+              &lt;/<span class="pl-ent">div</span>&gt; 
+                &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>add_post_button<span class="pl-pds">"</span></span>&gt;Отправить&lt;/<span class="pl-ent">div</span>&gt;
+
+            &lt;/<span class="pl-ent">form</span>&gt;
+
+
+
+
+          &lt;/<span class="pl-ent">div</span>&gt;
+
+
+
+      &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;  </pre></div>
+
+<p>Вот код JS, ответственный за отображение формы ввода идеи при нажатии на кнопку 'добавить идею'</p>
+
+<div class="highlight highlight-source-js"><pre> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#add_idea_button<span class="pl-pds">'</span></span>).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(){
+        <span class="pl-en">$</span>(<span class="pl-v">this</span>).<span class="pl-en">hide</span>(<span class="pl-c1">200</span>);
+        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-v">this</span>.<span class="pl-c1">id</span>)
+
+        <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#add_idea_form<span class="pl-pds">'</span></span>).<span class="pl-en">show</span>(<span class="pl-c1">200</span>);
+
+
+    });
+
+    <span class="pl-en">$</span>(<span class="pl-c1">document</span>).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>.add_post_button<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">e</span>) {
+
+
+ <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#idea-form<span class="pl-pds">"</span></span>).<span class="pl-c1">submit</span>();
+
+
+
+ });
+</pre></div>
+
+<div class="highlight highlight-source-ruby"><pre></pre></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ArnoldStrelkov/rubybook">Rubybook</a> is maintained by <a href="https://github.com/ArnoldStrelkov">ArnoldStrelkov</a>.</span>
