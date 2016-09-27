@@ -128,10 +128,11 @@
 
     });
 
-    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.add_post_button<span class="pl-pds">'</span></span>).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(){
+    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#add_post_button<span class="pl-pds">'</span></span>).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(){
         <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#idea-form<span class="pl-pds">"</span></span>).<span class="pl-c1">submit</span>();
-    });
-</pre></div>
+    });</pre></div>
+
+<p>Обратите внимание на кнопку <code>#add_post_button</code> я не стал использовать тег кнопки <code>&lt;button&gt;</code>, вместо этого я стилизовал под кнопку обычный <code>&lt;div&gt;</code> и назначил клику на этот div событие - отправку формы. Сделал я это для того чтобы было легче прописывать стили, так как у кнопки уже есть некоторое отображение по умолчанию и его пришлось бы переопределять. </p>
 
 <div class="highlight highlight-source-ruby"><pre></pre></div>
 
