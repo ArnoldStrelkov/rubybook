@@ -85,34 +85,32 @@
 При нажатии на эту кнопку с помоштю JQuery отображается форма идеи а сама кнопка скрывается</p>
 
 <div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea<span class="pl-pds">"</span></span>&gt;
-        &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>wrapper<span class="pl-pds">"</span></span>&gt;
-            <span class="pl-pse">&lt;%</span><span class="pl-s1"><span class="pl-k">if</span> <span class="pl-smi">@current_user</span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
-                &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea_button<span class="pl-pds">"</span></span>&gt;
-                    добавить идею
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>wrapper<span class="pl-pds">"</span></span>&gt;
+        <span class="pl-pse">&lt;%</span><span class="pl-s1"><span class="pl-k">if</span> <span class="pl-smi">@current_user</span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea_button<span class="pl-pds">"</span></span>&gt;
+            добавить идею
+        &lt;/<span class="pl-ent">div</span>&gt;<span class="pl-pse">&lt;%</span><span class="pl-s1"><span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea_form<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">form</span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>/api/new_idea<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>ajax_form idea-form<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>idea-form<span class="pl-pds">"</span></span> <span class="pl-e">method</span>=<span class="pl-s"><span class="pl-pds">"</span>post<span class="pl-pds">"</span></span>
+            <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>idea-form<span class="pl-pds">"</span></span>&gt;
+                &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form_wrapper<span class="pl-pds">"</span></span>&gt;
+                    &lt;<span class="pl-ent">label</span>&gt;Заголовок&lt;/<span class="pl-ent">label</span>&gt;
+                    &lt;<span class="pl-ent">input</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>header<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span>&gt;
+                    &lt;<span class="pl-ent">label</span>&gt;Текст&lt;/<span class="pl-ent">label</span>&gt; 
+                    &lt;<span class="pl-ent">textarea</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span> <span class="pl-e">rows</span>=<span class="pl-s"><span class="pl-pds">"</span>10<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">textarea</span>&gt;
+                    &lt;<span class="pl-ent">input</span> <span class="pl-e">name</span>= <span class="pl-s"><span class="pl-pds">"</span>authenticity_token<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> 
+                    <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pse">&lt;%=</span><span class="pl-s1"> form_authenticity_token </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">"</span></span>&gt;
+                    &lt;<span class="pl-ent">label</span>&gt;Видео&lt;/<span class="pl-ent">label</span>&gt; 
+                    &lt;<span class="pl-ent">input</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>video<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=
+                    <span class="pl-s"><span class="pl-pds">"</span>например: https://www.youtube.com/ watch?v=maX7jD6vGio<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span>&gt;
                 &lt;/<span class="pl-ent">div</span>&gt;
-            <span class="pl-pse">&lt;%</span><span class="pl-s1"><span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
-            &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea_form<span class="pl-pds">"</span></span>&gt;
-                &lt;<span class="pl-ent">form</span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>/api/new_idea<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>ajax_form idea-form<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=
-                <span class="pl-s"><span class="pl-pds">"</span>idea-form<span class="pl-pds">"</span></span> <span class="pl-e">method</span>=<span class="pl-s"><span class="pl-pds">"</span>post<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>idea-form<span class="pl-pds">"</span></span>&gt;
-                    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form_wrapper<span class="pl-pds">"</span></span>&gt;
-                        &lt;<span class="pl-ent">label</span>&gt;Заголовок&lt;/<span class="pl-ent">label</span>&gt; &lt;<span class="pl-ent">input</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span>
-                        <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>header<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span>&gt;
-                        &lt;<span class="pl-ent">label</span>&gt;Текст&lt;/<span class="pl-ent">label</span>&gt; 
-                        &lt;<span class="pl-ent">textarea</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span> <span class="pl-e">rows</span>=
-                        <span class="pl-s"><span class="pl-pds">"</span>10<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">textarea</span>&gt; &lt;<span class="pl-ent">input</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>authenticity_token<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=
-                        <span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pse">&lt;%=</span><span class="pl-s1"> form_authenticity_token </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">"</span></span>&gt;
-                        &lt;<span class="pl-ent">label</span>&gt;Видео&lt;/<span class="pl-ent">label</span>&gt; &lt;<span class="pl-ent">input</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=
-                        <span class="pl-s"><span class="pl-pds">"</span>video<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=
-                        <span class="pl-s"><span class="pl-pds">"</span>например: https://www.youtube.com/watch?v=maX7jD6vGio<span class="pl-pds">"</span></span>
-                        <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">br</span>&gt;
-                    &lt;/<span class="pl-ent">div</span>&gt;
-                    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>add_post_button<span class="pl-pds">"</span></span>&gt;
-                        Отправить
-                    &lt;/<span class="pl-ent">div</span>&gt;
-                &lt;/<span class="pl-ent">form</span>&gt;
-            &lt;/<span class="pl-ent">div</span>&gt;
+                &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_post_button<span class="pl-pds">"</span></span>&gt;
+                    Отправить
+                &lt;/<span class="pl-ent">div</span>&gt;
+            &lt;/<span class="pl-ent">form</span>&gt;
         &lt;/<span class="pl-ent">div</span>&gt;
-    &lt;/<span class="pl-ent">div</span>&gt; </pre></div>
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;   </pre></div>
 
 <p>Вот код JS, ответственный за отображение формы ввода идеи при нажатии на кнопку 'добавить идею'</p>
 
@@ -120,15 +118,60 @@
         <span class="pl-en">$</span>(<span class="pl-v">this</span>).<span class="pl-en">hide</span>(<span class="pl-c1">200</span>);
         <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#add_idea_form<span class="pl-pds">'</span></span>).<span class="pl-en">show</span>(<span class="pl-c1">200</span>);
 
-    });
+    });</pre></div>
 
-    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#add_post_button<span class="pl-pds">'</span></span>).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(){
+<p>Данный код отправляет форму </p>
+
+<div class="highlight highlight-source-js"><pre>    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#add_post_button<span class="pl-pds">'</span></span>).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(){
         <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#idea-form<span class="pl-pds">"</span></span>).<span class="pl-c1">submit</span>();
     });</pre></div>
 
 <p>Обратите внимание на кнопку <code>#add_post_button</code> я не стал использовать тег кнопки <code>&lt;button&gt;</code>, вместо этого я стилизовал под кнопку обычный <code>&lt;div&gt;</code> и назначил клику на этот div событие - отправку формы. Сделал я это для того чтобы было легче прописывать стили, так как у кнопки уже есть некоторое отображение по умолчанию и его пришлось бы переопределять. </p>
 
-<div class="highlight highlight-source-ruby"><pre></pre></div>
+<p>Ну и наконец, последняя часть кода, которая выводит список идей из переменной <code>@ideas</code></p>
+
+<div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>idea<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>wrapper<span class="pl-pds">"</span></span>&gt;
+        <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">for</span> idea <span class="pl-k">in</span> <span class="pl-smi">@ideas</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>one_idea<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">h2</span>&gt;<span class="pl-pse">&lt;%=</span><span class="pl-s1"> idea.header</span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">h2</span>&gt;
+                <span class="pl-pse">&lt;%</span><span class="pl-s1"><span class="pl-k">if</span> <span class="pl-k">!</span>idea.video.to_s.empty? </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>youtube<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pse">&lt;%=</span><span class="pl-s1"> idea.video.split(<span class="pl-s"><span class="pl-pds">'</span>?v=<span class="pl-pds">'</span></span>)[<span class="pl-c1">1</span>] </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">"</span></span>&gt;
+                    <span class="pl-pse">&lt;%=</span><span class="pl-s1"> image_tag <span class="pl-s"><span class="pl-pds">"</span>yt.png<span class="pl-pds">"</span></span>, <span class="pl-c1">class:</span> <span class="pl-s"><span class="pl-pds">"</span>yt<span class="pl-pds">"</span></span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                &lt;/<span class="pl-ent">div</span>&gt;
+                <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+            &lt;<span class="pl-ent">p</span>&gt;<span class="pl-pse">&lt;%=</span><span class="pl-s1"> idea.body </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">p</span>&gt;
+
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>join_status cf<span class="pl-pds">"</span></span>&gt;
+                &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>joined<span class="pl-pds">"</span></span>&gt;
+                    <span class="pl-pse">&lt;%</span><span class="pl-s1"> count <span class="pl-k">=</span> <span class="pl-c1">FollowIdea</span>.where(<span class="pl-c1">idea_id:</span> idea).count </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                    <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">unless</span> count <span class="pl-k">==</span> <span class="pl-c1">0</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                        &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_joined<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>/sususers/%3C%=%20idea.id%20%%3E<span class="pl-pds">"</span></span>&gt;присоеденилось:
+                    <span class="pl-pse">&lt;%=</span><span class="pl-s1"> count </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">a</span>&gt; 
+                    <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                &lt;/<span class="pl-ent">div</span>&gt;
+                &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>join<span class="pl-pds">"</span></span>&gt;
+                    <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">if</span> <span class="pl-c1">FollowIdea</span>.where(<span class="pl-c1">user_id:</span> <span class="pl-smi">@current_user</span>, <span class="pl-c1">idea_id:</span> idea).empty? </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                        &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_join<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">'</span>/auth/vkontakte<span class="pl-pds">'</span></span>&gt;присоедениться&lt;/<span class="pl-ent">a</span>&gt; 
+                    <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">else</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span> 
+                        вы присоеденились
+                    <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                &lt;/<span class="pl-ent">div</span>&gt;
+            &lt;/<span class="pl-ent">div</span>&gt;
+
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>sususers<span class="pl-pds">"</span></span>&gt;
+                <span class="pl-pse">&lt;%</span><span class="pl-s1"> count <span class="pl-k">=</span> idea.users.count </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                <span class="pl-pse">&lt;%</span><span class="pl-s1"> idea.users.each.with_index <span class="pl-k">do </span>|<span class="pl-smi">user</span>, <span class="pl-smi">index</span>| </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span> 
+                &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://vk.com/id<span class="pl-pse">&lt;%=</span><span class="pl-s1">user.uid</span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">"</span></span>&gt;<span class="pl-pse">&lt;%=</span><span class="pl-s1"> user.name</span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">a</span>&gt;
+                <span class="pl-pse">&lt;%=</span><span class="pl-s1"> <span class="pl-s"><span class="pl-pds">"</span>, <span class="pl-pds">"</span></span> <span class="pl-k">unless</span> index <span class="pl-k">==</span> count <span class="pl-k">-</span> <span class="pl-c1">1</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
+            &lt;/<span class="pl-ent">div</span>&gt;
+        &lt;/<span class="pl-ent">div</span>&gt;
+        <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ArnoldStrelkov/rubybook">Rubybook</a> is maintained by <a href="https://github.com/ArnoldStrelkov">ArnoldStrelkov</a>.</span>
