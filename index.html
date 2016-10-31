@@ -22,7 +22,7 @@
       <h3>
 <a id="Изучаем-ror-и-js-на-интересном-проекте" class="anchor" href="#%D0%98%D0%B7%D1%83%D1%87%D0%B0%D0%B5%D0%BC-ror-%D0%B8-js-%D0%BD%D0%B0-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BD%D0%BE%D0%BC-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Изучаем ROR и JS на интересном проекте</h3>
 
-<p>Мы будем делать сервис по поиску единомышленников. Это сайт на котором каждый пользователь может разместить свою идею, предложение, проект, а другие пользователи сайта могут к данному проекту присоедениться.</p>
+<p>Мы будем делать сервис по поиску единомышленников. Это будет такой сайт  на котором каждый пользователь может разместить свою идею, предложение, проект, а другие пользователи сайта могут к данному проекту присоединиться.</p>
 
 <h3>
 <a id="Проверка-залогинившегося-юзера" class="anchor" href="#%D0%9F%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D0%B7%D0%B0%D0%BB%D0%BE%D0%B3%D0%B8%D0%BD%D0%B8%D0%B2%D1%88%D0%B5%D0%B3%D0%BE%D1%81%D1%8F-%D1%8E%D0%B7%D0%B5%D1%80%D0%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Проверка залогинившегося юзера</h3>
@@ -38,9 +38,7 @@
   <span class="pl-k">private</span>
 
   <span class="pl-k">def</span> <span class="pl-en">check_login</span>
-
     <span class="pl-smi">@current_user</span> <span class="pl-k">||=</span> <span class="pl-c1">User</span>.where(<span class="pl-c1">id:</span> session[<span class="pl-c1">:user_id</span>]).first
-
   <span class="pl-k">end</span>  
 
 <span class="pl-k">end</span></pre></div>
@@ -50,7 +48,7 @@
 <h3>
 <a id="Вывод-списка-идей" class="anchor" href="#%D0%92%D1%8B%D0%B2%D0%BE%D0%B4-%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B0-%D0%B8%D0%B4%D0%B5%D0%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Вывод списка идей</h3>
 
-<p>По умолчанию у нас стоит роут <code>root 'main#index'</code> котрый передает управление методу <code>index</code> в контроллере <code>main</code></p>
+<p>По умолчанию у нас стоит роут <code>root 'main#index'</code> который передает управление методу <code>index</code> в контроллере <code>main</code></p>
 
 <div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">MainController<span class="pl-e"> &lt; ApplicationController</span></span>
   <span class="pl-k">def</span> <span class="pl-en">index</span>
@@ -65,33 +63,32 @@
 
 <p>Первый блок вьюхи это отображение меню</p>
 
-<div class="highlight highlight-source-ruby"><pre><span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>menu<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
-    <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>wrapper<span class="pl-pds">"</span></span>  <span class="pl-k">&gt;</span>
-      <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>cf<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
-            <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>menu_text<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>Поиск единомышленников <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
-            <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>menu_button<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
-                <span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">if</span> <span class="pl-smi">@current_user</span><span class="pl-s"><span class="pl-pds">%&gt;</span></span>
-<span class="pl-s">                &lt;%= @current_user.name %<span class="pl-pds">&gt;</span></span>
-                 <span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">else</span> <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
-<span class="pl-s">                &lt;a  class="a_button" href='/auth/vkontakte'<span class="pl-pds">&gt;</span></span>Войти через вк<span class="pl-k">&lt;</span><span class="pl-k">/</span>a&gt;<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
-            <span class="pl-k">&lt;</span><span class="pl-k">%</span> <span class="pl-k">end</span> <span class="pl-s"><span class="pl-pds">%&gt;</span></span>
-<span class="pl-s">         &lt;/div<span class="pl-pds">&gt;</span></span>  
-    <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
-<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>   </pre></div>
+<div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>menu<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>wrapper<span class="pl-pds">"</span></span>  &gt;
+      &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>cf<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>menu_text<span class="pl-pds">"</span></span>&gt;Поиск единомышленников &lt;/<span class="pl-ent">div</span>&gt;
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>menu_button<span class="pl-pds">"</span></span>&gt;
+                <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">if</span> <span class="pl-smi">@current_user</span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                <span class="pl-pse">&lt;%=</span><span class="pl-s1"> <span class="pl-smi">@current_user</span>.name </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                 <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">else</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                &lt;<span class="pl-ent">a</span>  <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_button<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">'</span>/auth/vkontakte<span class="pl-pds">'</span></span>&gt;Войти через вк&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+            <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+         &lt;/<span class="pl-ent">div</span>&gt;  
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;   </pre></div>
 
 <p>Здесь мы проверяем наличие <code>@current_user</code> и если он есть то выводим его имя, а если нет, то выводим кнопку входа через вконтакте.</p>
 
-<p>Затем идет блок с кнопкой добавить идею. Данна конпка отображается только если юзер залогинился.
-При нажатии на эту кнопку с помоштю JQuery отображается форма идеи а сама кнопка скрывается</p>
+<p>Затем идет блок с кнопкой добавить идею. Данная кнопка отображается только если юзер залогинился.
+При нажатии на эту кнопку с помощью JQuery отображается форма добавления новой идеи, а сама кнопка скрывается</p>
 
 <div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea<span class="pl-pds">"</span></span>&gt;
     &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>wrapper<span class="pl-pds">"</span></span>&gt;
         <span class="pl-pse">&lt;%</span><span class="pl-s1"><span class="pl-k">if</span> <span class="pl-smi">@current_user</span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
-        &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea_button<span class="pl-pds">"</span></span>&gt;
-            добавить идею
-        &lt;/<span class="pl-ent">div</span>&gt;<span class="pl-pse">&lt;%</span><span class="pl-s1"><span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea_button<span class="pl-pds">"</span></span>&gt;добавить идею&lt;/<span class="pl-ent">div</span>&gt;
+        <span class="pl-pse">&lt;%</span><span class="pl-s1"><span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
         &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>add_idea_form<span class="pl-pds">"</span></span>&gt;
-            &lt;<span class="pl-ent">form</span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>/api/new_idea<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>ajax_form idea-form<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>idea-form<span class="pl-pds">"</span></span> <span class="pl-e">method</span>=<span class="pl-s"><span class="pl-pds">"</span>post<span class="pl-pds">"</span></span>
+            &lt;<span class="pl-ent">form</span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>/api/new_idea<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>idea-form<span class="pl-pds">"</span></span> <span class="pl-e">method</span>=<span class="pl-s"><span class="pl-pds">"</span>post<span class="pl-pds">"</span></span>
             <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>idea-form<span class="pl-pds">"</span></span>&gt;
                 &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form_wrapper<span class="pl-pds">"</span></span>&gt;
                     &lt;<span class="pl-ent">label</span>&gt;Заголовок&lt;/<span class="pl-ent">label</span>&gt;
@@ -118,15 +115,15 @@
         <span class="pl-en">$</span>(<span class="pl-v">this</span>).<span class="pl-en">hide</span>(<span class="pl-c1">200</span>);
         <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#add_idea_form<span class="pl-pds">'</span></span>).<span class="pl-en">show</span>(<span class="pl-c1">200</span>);
 
-    });</pre></div>
+});</pre></div>
 
 <p>Данный код отправляет форму </p>
 
-<div class="highlight highlight-source-js"><pre>    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#add_post_button<span class="pl-pds">'</span></span>).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(){
-        <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#idea-form<span class="pl-pds">"</span></span>).<span class="pl-c1">submit</span>();
-    });</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>#add_post_button<span class="pl-pds">'</span></span>).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(){
+    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#idea-form<span class="pl-pds">"</span></span>).<span class="pl-c1">submit</span>();
+});</pre></div>
 
-<p>Обратите внимание на кнопку <code>#add_post_button</code> я не стал использовать тег кнопки <code>&lt;button&gt;</code>, вместо этого я стилизовал под кнопку обычный <code>&lt;div&gt;</code> и назначил клику на этот div событие - отправку формы. Сделал я это для того чтобы было легче прописывать стили, так как у кнопки уже есть некоторое отображение по умолчанию и его пришлось бы переопределять. </p>
+<p>Я не стал использовать тег кнопки <code>&lt;button&gt;</code>, вместо этого я стилизовал под кнопку обычный <code>&lt;div&gt;</code> с <code>id=#add_post_button</code> и назначил клику на этот div событие - отправку формы. Сделал я это для того чтобы было легче прописывать стили, так как у кнопки уже есть некоторое отображение по умолчанию и его пришлось бы переопределять. </p>
 
 <p>Ну и наконец, последняя часть кода, которая выводит список идей из переменной <code>@ideas</code></p>
 
@@ -147,15 +144,20 @@
                 &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>joined<span class="pl-pds">"</span></span>&gt;
                     <span class="pl-pse">&lt;%</span><span class="pl-s1"> count <span class="pl-k">=</span> <span class="pl-c1">FollowIdea</span>.where(<span class="pl-c1">idea_id:</span> idea).count </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
                     <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">unless</span> count <span class="pl-k">==</span> <span class="pl-c1">0</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
-                        &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_joined<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;присоеденилось:
+                        &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_joined<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;присоединилось:
                     <span class="pl-pse">&lt;%=</span><span class="pl-s1"> count </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">a</span>&gt; 
                     <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
                 &lt;/<span class="pl-ent">div</span>&gt;
                 &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>join<span class="pl-pds">"</span></span>&gt;
                     <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">if</span> <span class="pl-c1">FollowIdea</span>.where(<span class="pl-c1">user_id:</span> <span class="pl-smi">@current_user</span>, <span class="pl-c1">idea_id:</span> idea).empty? </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
-                        &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_join<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">'</span>/auth/vkontakte<span class="pl-pds">'</span></span>&gt;присоедениться&lt;/<span class="pl-ent">a</span>&gt; 
+                        <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">if</span>  <span class="pl-smi">@current_user</span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                            &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_join<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">'</span>/susc/<span class="pl-pse">&lt;%=</span><span class="pl-s1"> idea.id </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">'</span></span>&gt;присоединиться&lt;/<span class="pl-ent">a</span>&gt; 
+                        <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">else</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+                            &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_join<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">'</span>/auth/vkontakte<span class="pl-pds">'</span></span>&gt;присоединиться&lt;/<span class="pl-ent">a</span>&gt;
+                        <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
+
                     <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">else</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span> 
-                        вы присоеденились
+                        вы присоединились
                     <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
                 &lt;/<span class="pl-ent">div</span>&gt;
             &lt;/<span class="pl-ent">div</span>&gt;
@@ -170,7 +172,7 @@
     &lt;/<span class="pl-ent">div</span>&gt;
 &lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
-<p>Давайте разберем этот код по кусочкам. Вот это цикл <code>for in</code> с помощью котрого мы перебираем все идеи которые находятся в переменной <code>@ideas</code></p>
+<p>Давайте разберем этот код по кусочкам. Вот это цикл <code>for in</code> с помощью которого мы перебираем все идеи которые находятся в переменной <code>@ideas</code></p>
 
 <div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>idea<span class="pl-pds">"</span></span>&gt;
     &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>wrapper<span class="pl-pds">"</span></span>&gt;
@@ -204,60 +206,55 @@
 
 <div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>youtube<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pse">&lt;%=</span><span class="pl-s1"> idea.video.split(<span class="pl-s"><span class="pl-pds">'</span>?v=<span class="pl-pds">'</span></span>)[<span class="pl-c1">1</span>] </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">"</span></span>&gt;</pre></div>
 
-<p>Дальнейшая обработка данного дива проходит с помошью вот такого кода JS</p>
+<p>Дальнейшая обработка данного дива проходит с помощью вот такого кода JS, который вешает обработчик клика на каждый <code>div</code> с классом <code>youtube</code></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> <span class="pl-en">youtube</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>.youtube<span class="pl-pds">"</span></span>).<span class="pl-en">each</span>(<span class="pl-k">function</span>() {
 
-    <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>.youtube<span class="pl-pds">"</span></span>).<span class="pl-en">each</span>(<span class="pl-k">function</span>() {
+<span class="pl-c">// определение миниатюры</span>
+<span class="pl-en">$</span>(<span class="pl-v">this</span>).<span class="pl-en">css</span>(<span class="pl-s"><span class="pl-pds">'</span>background-image<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>url(http://i.ytimg.com/vi/<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">id</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>/sddefault.jpg)<span class="pl-pds">'</span></span>);
 
-        <span class="pl-c">// определение миниатюры</span>
-        <span class="pl-en">$</span>(<span class="pl-v">this</span>).<span class="pl-en">css</span>(<span class="pl-s"><span class="pl-pds">'</span>background-image<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>url(http://i.ytimg.com/vi/<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">id</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>/sddefault.jpg)<span class="pl-pds">'</span></span>);
+<span class="pl-en">$</span>(<span class="pl-c1">document</span>).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">id</span>, <span class="pl-k">function</span>() {
 
-        <span class="pl-en">$</span>(<span class="pl-c1">document</span>).<span class="pl-en">delegate</span>(<span class="pl-s"><span class="pl-pds">'</span>#<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">id</span>, <span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>() {
-            <span class="pl-c">// формируем ссылку со включенной опцией autoplay</span>
-            <span class="pl-k">var</span> iframe_url <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>https://www.youtube.com/embed/<span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">id</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>?autoplay=1&amp;autohide=1&amp;rel=0<span class="pl-pds">"</span></span>;
+    <span class="pl-c">// формируем ссылку со включенной опцией autoplay</span>
+    <span class="pl-k">var</span> iframe_url <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>https://www.youtube.com/embed/<span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">id</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>?autoplay=1&amp;autohide=1&amp;rel=0<span class="pl-pds">"</span></span>;
 
-            <span class="pl-c">// Формируем элемент iframe</span>
-            <span class="pl-k">var</span> iframe <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;iframe/&gt;<span class="pl-pds">'</span></span>, {<span class="pl-s"><span class="pl-pds">'</span>frameborder<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>src<span class="pl-pds">'</span></span><span class="pl-k">:</span> iframe_url});
+    <span class="pl-c">// Формируем элемент iframe</span>
+    <span class="pl-k">var</span> iframe <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;iframe/&gt;<span class="pl-pds">'</span></span>, {<span class="pl-s"><span class="pl-pds">'</span>frameborder<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>src<span class="pl-pds">'</span></span><span class="pl-k">:</span> iframe_url});
 
-            <span class="pl-c">// Замена миниатюры плеером</span>
-            <span class="pl-en">$</span>(<span class="pl-v">this</span>).<span class="pl-c1">replaceWith</span>(iframe);
-        });
+    <span class="pl-c">// Замена миниатюры плеером</span>
+    <span class="pl-en">$</span>(<span class="pl-v">this</span>).<span class="pl-c1">replaceWith</span>(iframe);
     });
+});</pre></div>
 
-}; 
-
-<span class="pl-en">youtube</span>();</pre></div>
-
-<p>Выводим текст идеи</p>
+<p>Возвращаемся к нашей вьюхе. Выводим текст идеи</p>
 
 <div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">p</span>&gt;<span class="pl-pse">&lt;%=</span><span class="pl-s1"> idea.body </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">p</span>&gt;</pre></div>
 
-<p>Выводим число присоеденившихся и кнопку "присоедениться"</p>
+<p>Выводим число присоединившихся и кнопку "присоединиться"</p>
 
 <div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>join_status cf<span class="pl-pds">"</span></span>&gt;
     &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>joined<span class="pl-pds">"</span></span>&gt;
         <span class="pl-pse">&lt;%</span><span class="pl-s1"> count <span class="pl-k">=</span> <span class="pl-c1">FollowIdea</span>.where(<span class="pl-c1">idea_id:</span> idea).count </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
         <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">unless</span> count <span class="pl-k">==</span> <span class="pl-c1">0</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
-            &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_joined<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;присоеденилось:
+            &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_joined<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;присоединилось:
         <span class="pl-pse">&lt;%=</span><span class="pl-s1"> count </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>&lt;/<span class="pl-ent">a</span>&gt; 
         <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
     &lt;/<span class="pl-ent">div</span>&gt;
     &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>join<span class="pl-pds">"</span></span>&gt;
         <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">if</span> <span class="pl-c1">FollowIdea</span>.where(<span class="pl-c1">user_id:</span> <span class="pl-smi">@current_user</span>, <span class="pl-c1">idea_id:</span> idea).empty? </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
             <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">if</span>  <span class="pl-smi">@current_user</span></span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
-                &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_join<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">'</span>/susc/<span class="pl-pse">&lt;%=</span><span class="pl-s1"> idea.id </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">'</span></span>&gt;присоедениться&lt;/<span class="pl-ent">a</span>&gt; 
+                &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_join<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">'</span>/susc/<span class="pl-pse">&lt;%=</span><span class="pl-s1"> idea.id </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span><span class="pl-pds">'</span></span>&gt;присоединиться&lt;/<span class="pl-ent">a</span>&gt; 
             <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">else</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
-                &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_join<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">'</span>/auth/vkontakte<span class="pl-pds">'</span></span>&gt;присоедениться&lt;/<span class="pl-ent">a</span>&gt;
+                &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>a_join<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">'</span>/auth/vkontakte<span class="pl-pds">'</span></span>&gt;присоединиться&lt;/<span class="pl-ent">a</span>&gt;
             <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 
         <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">else</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span> 
-            вы присоеденились
+            вы присоединились
         <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
     &lt;/<span class="pl-ent">div</span>&gt;
 &lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
-<p>Выводим перечень присоеденившихся</p>
+<p>Выводим перечень присоединившихся</p>
 
 <div class="highlight highlight-text-html-erb"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>sususers<span class="pl-pds">"</span></span>&gt;
         <span class="pl-pse">&lt;%</span><span class="pl-s1"> idea.users.each.with_index <span class="pl-k">do </span>|<span class="pl-smi">user</span>, <span class="pl-smi">index</span>| </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span> 
@@ -265,13 +262,55 @@
         <span class="pl-pse">&lt;%</span><span class="pl-s1"> <span class="pl-k">end</span> </span><span class="pl-pse"><span class="pl-s1">%</span>&gt;</span>
 &lt;/<span class="pl-ent">div</span>&gt;</pre></div>
 
-<p>По умолчанию перечень присоеденившисхся находися в див со свойством <code>display:none;</code> и не отображается. Показ данного дива включается при клике на ссылку с классом a_joined с помощью такого скрипта</p>
+<p>По умолчанию перечень присоединившисхся находится в див со свойством <code>display:none;</code> и не отображается. Показ данного дива включается при клике на ссылку с классом <code>a_joined</code> с помощью такого скрипта</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.a_joined<span class="pl-pds">'</span></span>).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">e</span>) {
     <span class="pl-smi">e</span>.<span class="pl-c1">preventDefault</span>();
     <span class="pl-en">$</span>(<span class="pl-v">this</span>).<span class="pl-c1">parent</span>().<span class="pl-c1">parent</span>().<span class="pl-c1">parent</span>().<span class="pl-c1">find</span>(<span class="pl-s"><span class="pl-pds">'</span>.sususers<span class="pl-pds">'</span></span>).<span class="pl-en">show</span>(<span class="pl-c1">200</span>);
 
 });</pre></div>
+
+<h3>
+<a id="Контроллер-api_controllerrb" class="anchor" href="#%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80-api_controllerrb" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Контроллер <code>api_controller.rb</code>
+</h3>
+
+<p>Метод  <code>new_idea</code> записывает в базу данных новую идею. Данный метод вызывается при отправке формы так как у нас в роутах прописано <code>post 'api/new_idea'</code></p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">def</span> <span class="pl-en">new_idea</span>
+   <span class="pl-smi">@idea</span> <span class="pl-k">=</span> <span class="pl-c1">Idea</span>.create(<span class="pl-c1">header:</span> params[<span class="pl-c1">:header</span>], <span class="pl-c1">body:</span> params[<span class="pl-c1">:body</span>], <span class="pl-c1">video:</span> params[<span class="pl-c1">:video</span>], <span class="pl-c1">user_id:</span> <span class="pl-smi">@current_user</span>.id)
+   redirect_to root_url
+<span class="pl-k">end</span></pre></div>
+
+<p>Метод <code>susc</code> осуществляет подписку пользователя на идею и вызывается при клике на конопку подписаться, соответствюущий роут - <code>get '/susc/:id', to: 'api#susc'</code></p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">def</span> <span class="pl-en">susc</span>
+    i <span class="pl-k">=</span> <span class="pl-c1">Idea</span>.find(params[<span class="pl-c1">:id</span>])
+    <span class="pl-smi">@current_user</span>.follow_ideas.create(<span class="pl-c1">idea:</span> i)
+    redirect_to root_url
+  <span class="pl-k">end</span>  </pre></div>
+
+<p>Метод <code>set_session</code> вызывается гемом авторизации <code>omniauth</code> после того как данный гем получит ответ от вконтакте, соответствюущий роут - <code>get '/auth/:provider/callback', to: 'api#set_session'</code></p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">def</span> <span class="pl-en">set_session</span>
+
+    req <span class="pl-k">=</span> request.env[<span class="pl-s"><span class="pl-pds">'</span>omniauth.auth<span class="pl-pds">'</span></span>]
+    user <span class="pl-k">=</span> <span class="pl-c1">User</span>.where(<span class="pl-c1">provider:</span> req.provider, <span class="pl-c1">uid:</span> req.uid).first 
+
+    <span class="pl-k">unless</span> user
+      user <span class="pl-k">=</span>  <span class="pl-c1">User</span>.create(<span class="pl-c1">name:</span> req.info.name, <span class="pl-c1">provider:</span> req.provider, <span class="pl-c1">uid:</span> req.uid)
+    <span class="pl-k">end</span>
+
+    session[<span class="pl-c1">:user_id</span>] <span class="pl-k">=</span> user.id
+    redirect_to root_url
+<span class="pl-k">end</span> 
+</pre></div>
+
+<p>Чтобы разлогиниться мы прописывем в сессию вместо <code>id</code> юзера <code>nil</code></p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">def</span> <span class="pl-en">exit</span>
+ session[<span class="pl-c1">:user_id</span>] <span class="pl-k">=</span> <span class="pl-c1">nil</span>
+ redirect_to root_url
+<span class="pl-k">end</span> </pre></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ArnoldStrelkov/rubybook">Rubybook</a> is maintained by <a href="https://github.com/ArnoldStrelkov">ArnoldStrelkov</a>.</span>
